@@ -1,5 +1,6 @@
 # Global Tuberculosis Trends Analysis
 
+<<<<<<< HEAD
 A professional Python data science project analyzing global tuberculosis (TB) trends using public health data from Our World in Data (OWID) and the World Health Organization (WHO). This project demonstrates industry-standard workflows for data loading, cleaning, analysis, and visualization.
 
 ## 📋 Project Overview
@@ -302,3 +303,20 @@ For issues, questions, or suggestions, please refer to the code documentation an
 ---
 
 **Last Updated:** January 2026
+=======
+This project analyzes global tuberculosis trends using WHO and Our World in Data datasets.
+It focuses on data tidying, large-scale CSV handling, and visualization.
+
+## Tools
+- Python
+- Pandas
+- Plotly
+- Matplotlib
+- VS Code
+
+## Key Skills Demonstrated
+- Data cleaning and restructuring
+- Public health data analysis
+- Geospatial visualization
+- Reproducible data science workflows
+>>>>>>> 6c4b5a04b1e43113f697fe86222358b64d72864f
