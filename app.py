@@ -92,7 +92,7 @@ st.sidebar.markdown(
 # ============================================================================
 st.markdown("# 🌍 TB Global Analysis Dashboard")
 st.markdown("Explore tuberculosis incidence data from Our World in Data and WHO")
-st.markdown("---")
+st.markdown("**Authors:** Fabrice Andre | **Date:** 1/19/2026")
 
 # ============================================================================
 # OWID ANALYSIS
