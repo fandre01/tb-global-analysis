@@ -1,7 +1,10 @@
 """
 TB Global Analysis - Interactive Streamlit Dashboard
 Explore tuberculosis incidence data from OWID and WHO sources
-"""
+Authors: Fabrice Andre
+Date: 1/19/2026
+
+ """
 
 import streamlit as st
 import pandas as pd
@@ -146,7 +149,7 @@ if data_source == "OWID (Global Trends)":
     )
     
     if len(top_countries) > 0:
-        fig_top = px.barh(
+        fig_top = px.bar(
             top_countries,
             x='tb_incidence',
             y='country',
@@ -165,7 +168,7 @@ if data_source == "OWID (Global Trends)":
         comparison = filtered_owid.groupby('country')['tb_incidence'].mean().reset_index()
         comparison = comparison.sort_values('tb_incidence', ascending=True)
         
-        fig_comp = px.barh(
+        fig_comp = px.bar(
             comparison,
             x='tb_incidence',
             y='country',
@@ -214,7 +217,7 @@ elif data_source == "WHO (2023 Snapshot)":
     st.subheader("🏆 Top 15 Countries by TB Incidence (WHO 2023)")
     top_who = who_data.nlargest(15, 'tb_incidence').sort_values('tb_incidence')
     
-    fig_who_top = px.barh(
+    fig_who_top = px.bar(
         top_who,
         x='tb_incidence',
         y='country',
@@ -232,7 +235,7 @@ elif data_source == "WHO (2023 Snapshot)":
         st.subheader("📊 Selected Countries (WHO 2023)")
         selected_who = filtered_who.sort_values('tb_incidence', ascending=True)
         
-        fig_sel_who = px.barh(
+        fig_sel_who = px.bar(
             selected_who,
             x='tb_incidence',
             y='country',
@@ -262,95 +265,62 @@ else:  # Combined Analysis
     st.header("🔀 Combined OWID & WHO Analysis")
     
     # Metrics
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("🌍 Merged Countries", merged_data['country'].nunique())
     with col2:
         st.metric("📊 Merged Records", len(merged_data))
     with col3:
-        avg_owid = merged_data['tb_incidence_owid'].mean()
-        st.metric("📈 OWID Avg", f"{avg_owid:.1f}")
-    with col4:
-        avg_who = merged_data['tb_incidence_who'].mean()
-        st.metric("📈 WHO Avg", f"{avg_who:.1f}")
+        avg_inc = merged_data['tb_incidence'].mean()
+        st.metric("📈 Avg TB Incidence", f"{avg_inc:.1f}")
     
     st.markdown("---")
     
-    # OWID vs WHO comparison
-    st.subheader("📊 OWID vs WHO Comparison (Top Countries)")
+    # Top countries by incidence
+    st.subheader("🏆 Top 15 Countries in Merged Dataset")
+    top_merged = merged_data.nlargest(15, 'tb_incidence').sort_values('tb_incidence')
     
-    # Prepare comparison data
-    if 'tb_incidence_owid' in merged_data.columns and 'tb_incidence_who' in merged_data.columns:
-        comparison_data = merged_data[['country', 'tb_incidence_owid', 'tb_incidence_who']].copy()
-        comparison_data['avg_both'] = (
-            comparison_data['tb_incidence_owid'] + comparison_data['tb_incidence_who']
-        ) / 2
-        comparison_data = comparison_data.nlargest(10, 'avg_both')
-        
-        fig_comp = px.bar(
-            comparison_data,
-            x='country',
-            y=['tb_incidence_owid', 'tb_incidence_who'],
-            barmode='group',
-            title="OWID vs WHO TB Incidence Rates",
-            labels={
-                'country': 'Country',
-                'value': 'TB Incidence Rate',
-                'variable': 'Source'
-            },
-            color_discrete_map={
-                'tb_incidence_owid': '#1f77b4',
-                'tb_incidence_who': '#ff7f0e'
-            }
-        )
-        fig_comp.update_layout(height=400)
-        st.plotly_chart(fig_comp, use_container_width=True)
-    
-    # Data distribution
-    st.subheader("📈 Data Distribution")
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        fig_hist_owid = px.histogram(
-            merged_data,
-            x='tb_incidence_owid',
-            nbins=30,
-            title="OWID TB Incidence Distribution",
-            labels={'tb_incidence_owid': 'TB Incidence Rate'},
-            color_discrete_sequence=['#1f77b4']
-        )
-        fig_hist_owid.update_layout(height=350)
-        st.plotly_chart(fig_hist_owid, use_container_width=True)
-    
-    with col2:
-        fig_hist_who = px.histogram(
-            merged_data,
-            x='tb_incidence_who',
-            nbins=30,
-            title="WHO TB Incidence Distribution",
-            labels={'tb_incidence_who': 'TB Incidence Rate'},
-            color_discrete_sequence=['#ff7f0e']
-        )
-        fig_hist_who.update_layout(height=350)
-        st.plotly_chart(fig_hist_who, use_container_width=True)
-    
-    # Scatter plot
-    st.subheader("🔵 OWID vs WHO Correlation")
-    fig_scatter = px.scatter(
-        merged_data,
-        x='tb_incidence_owid',
-        y='tb_incidence_who',
-        hover_data=['country'],
-        title="OWID vs WHO TB Incidence Rates",
-        labels={
-            'tb_incidence_owid': 'OWID TB Incidence',
-            'tb_incidence_who': 'WHO TB Incidence'
-        },
-        color='tb_incidence_owid',
+    fig_merged_top = px.bar(
+        top_merged,
+        x='tb_incidence',
+        y='country',
+        orientation='h',
+        title="Top 15 Countries - Merged Data",
+        labels={'tb_incidence': 'TB Incidence Rate', 'country': 'Country'},
+        color='tb_incidence',
         color_continuous_scale='Viridis'
     )
-    fig_scatter.update_layout(height=400)
-    st.plotly_chart(fig_scatter, use_container_width=True)
+    fig_merged_top.update_layout(height=500)
+    st.plotly_chart(fig_merged_top, use_container_width=True)
+    
+    # Data distribution
+    st.subheader("📈 TB Incidence Distribution (Merged Data)")
+    fig_hist = px.histogram(
+        merged_data,
+        x='tb_incidence',
+        nbins=30,
+        title="Distribution of TB Incidence Rates",
+        labels={'tb_incidence': 'TB Incidence Rate'},
+        color_discrete_sequence=['#1f77b4']
+    )
+    fig_hist.update_layout(height=400)
+    st.plotly_chart(fig_hist, use_container_width=True)
+    
+    # Summary statistics
+    st.subheader("📊 Summary Statistics")
+    stats = {
+        'Metric': ['Count', 'Mean', 'Median', 'Std Dev', 'Min', 'Max'],
+        'Value': [
+            int(merged_data['tb_incidence'].count()),
+            f"{merged_data['tb_incidence'].mean():.2f}",
+            f"{merged_data['tb_incidence'].median():.2f}",
+            f"{merged_data['tb_incidence'].std():.2f}",
+            f"{merged_data['tb_incidence'].min():.2f}",
+            f"{merged_data['tb_incidence'].max():.2f}"
+        ]
+    }
+    stats_df = pd.DataFrame(stats)
+    st.dataframe(stats_df, use_container_width=True, hide_index=True)
     
     # Data export
     st.subheader("💾 Download Merged Data")
