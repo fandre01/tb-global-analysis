@@ -96,7 +96,7 @@ st.markdown("CSE 310 - Sprint 1 Project")
 st.markdown("**Authors:** Fabrice Andre | **Date:** 1/19/2026")
 st.markdown("Still improving... 🚧")
 st.markdown("---")
-st.markdown("Subject: TB Global Analysis Dashboard - Back Online")
+st.markdown("# Subject: TB Global Analysis Dashboard - Back Online")
 st.markdown("I apologize for the TB Global Analysis Dashboard being")
 st.markdown("unavailable over the past 2 days.")
 st.markdown("The outage was due to compatibility issues between older") 
@@ -109,6 +109,7 @@ st.markdown("If you encounter any further issues, please reach out to me,")
 st.markdown("at andrefabrice906@gmail.com")
 st.markdown("Best regards,")
 st.markdown("Fabrice Andre")
+st.markdown("---")
 # ============================================================================
 # OWID ANALYSIS
 # ============================================================================
