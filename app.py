@@ -348,9 +348,9 @@ else:  # Combined Analysis
 # ============================================================================
 st.markdown("---")
 st.markdown(
-    "**📚 Data Sources:**\n"
+    "**📚 Data Sources:**\n" 
     "- OWID: Our World in Data - TB Incidence (1990-2023)\n"
     "- WHO: World Health Organization - TB Incidence (2023)\n\n"
     "**🔧 Built with:** Python • Streamlit • Pandas • Plotly\n\n"
-    "[View on GitHub](https://github.com) • [Report Issue](https://github.com)"
+    "•[Report Issue](andrefabrice906@gmail.com)"
 )
