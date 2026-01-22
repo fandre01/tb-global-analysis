@@ -352,5 +352,5 @@ st.markdown(
     "- OWID: Our World in Data - TB Incidence (1990-2023)\n"
     "- WHO: World Health Organization - TB Incidence (2023)\n\n"
     "**🔧 Built with:** Python • Streamlit • Pandas • Plotly\n\n"
-    "•[Report Issue](andrefabrice906@gmail.com)"
+    "[View on GitHub](https://github.com) • [Report Issue](andrefabrice906@gmail.com)"
 )
