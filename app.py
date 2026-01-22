@@ -140,7 +140,7 @@ if data_source == "OWID (Global Trends)":
         line_shape='spline'
     )
     fig_trend.update_layout(hovermode='x unified', height=400)
-    st.plotly_chart(fig_trend, use_container_width=True)
+    st.plotly_chart(fig_trend, width='stretch')
     
     # Top countries for selected year
     st.subheader("🏆 Top 10 Countries by TB Incidence (Latest Year)")
@@ -163,7 +163,7 @@ if data_source == "OWID (Global Trends)":
             color_continuous_scale='Reds'
         )
         fig_top.update_layout(height=400, showlegend=False)
-        st.plotly_chart(fig_top, use_container_width=True)
+        st.plotly_chart(fig_top, width='stretch')
     
     # Country comparison
     if selected_countries:
@@ -182,7 +182,7 @@ if data_source == "OWID (Global Trends)":
             color_continuous_scale='Blues'
         )
         fig_comp.update_layout(height=max(300, len(selected_countries) * 30))
-        st.plotly_chart(fig_comp, use_container_width=True)
+        st.plotly_chart(fig_comp, width='stretch')
     
     # Data export
     st.subheader("💾 Download Filtered Data")
@@ -231,7 +231,7 @@ elif data_source == "WHO (2023 Snapshot)":
         color_continuous_scale='Oranges'
     )
     fig_who_top.update_layout(height=500)
-    st.plotly_chart(fig_who_top, use_container_width=True)
+    st.plotly_chart(fig_who_top, width='stretch')
     
     # Selected countries comparison
     if selected_countries:
@@ -249,7 +249,7 @@ elif data_source == "WHO (2023 Snapshot)":
             color_continuous_scale='Purples'
         )
         fig_sel_who.update_layout(height=max(300, len(selected_countries) * 30))
-        st.plotly_chart(fig_sel_who, use_container_width=True)
+        st.plotly_chart(fig_sel_who, width='stretch')
     
     # Data export
     st.subheader("💾 Download Filtered Data")
@@ -294,7 +294,7 @@ else:  # Combined Analysis
         color_continuous_scale='Viridis'
     )
     fig_merged_top.update_layout(height=500)
-    st.plotly_chart(fig_merged_top, use_container_width=True)
+    st.plotly_chart(fig_merged_top, width='stretch')
     
     # Data distribution
     st.subheader("📈 TB Incidence Distribution (Merged Data)")
@@ -307,7 +307,7 @@ else:  # Combined Analysis
         color_discrete_sequence=['#1f77b4']
     )
     fig_hist.update_layout(height=400)
-    st.plotly_chart(fig_hist, use_container_width=True)
+    st.plotly_chart(fig_hist, width='stretch')
     
     # Summary statistics
     st.subheader("📊 Summary Statistics")
@@ -323,7 +323,7 @@ else:  # Combined Analysis
         ]
     }
     stats_df = pd.DataFrame(stats)
-    st.dataframe(stats_df, use_container_width=True, hide_index=True)
+    st.dataframe(stats_df, width='stretch', hide_index=True)
     
     # Data export
     st.subheader("💾 Download Merged Data")
