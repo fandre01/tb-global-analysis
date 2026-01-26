@@ -1,9 +1,6 @@
 """
 TB Global Analysis - Interactive Streamlit Dashboard
 Explore tuberculosis incidence data from OWID and WHO sources
-Authors: Fabrice Andre
-Date: 1/19/2026
-
  """
 
 import streamlit as st
@@ -96,14 +93,14 @@ st.markdown("CSE 310 - Sprint 1 Project")
 st.markdown("**Authors:** Fabrice Andre | **Date:** 1/19/2026")
 st.markdown("Still improving... 🚧")
 st.markdown("---")
-st.markdown("""
-### 🙏 TB Global Analysis Dashboard - Back Online
+# st.markdown("""
+# ### 🙏 TB Global Analysis Dashboard - Back Online
 
-I apologize for the TB Global Analysis Dashboard being unavailable over the past 2 days. The outage was due to compatibility issues between older Streamlit dependencies and recent cloud updates. We've resolved this by upgrading Streamlit to a compatible version and updating the deployment configuration. Thank you for your patience and understanding. If you encounter any further issues, please reach out to me at **andrefabrice906@gmail.com**
+# I apologize for the TB Global Analysis Dashboard being unavailable over the past 2 days. The outage was due to compatibility issues between older Streamlit dependencies and recent cloud updates. We've resolved this by upgrading Streamlit to a compatible version and updating the deployment configuration. Thank you for your patience and understanding. If you encounter any further issues, please reach out to me at **andrefabrice906@gmail.com**
 
-Best regards,  
-**Fabrice Andre**
-""")
+# Best regards,  
+# **Fabrice Andre**
+# """)
 st.markdown("---")
 # ============================================================================
 # OWID ANALYSIS
